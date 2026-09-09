@@ -373,75 +373,49 @@ Municipal GIS / Existing Building Footprints
 ║ PHASE 12 — UTILITY NETWORK INTEGRATION & SPATIAL ANALYTICS                  ║
 ╚══════════════════════════════════════════════════════════════════════════════╝
 
-UTILITY INPUT
-│
-├── Water Pipelines
-├── Sewer Networks
-├── Drainage
-├── Electricity Networks
-├── Telecom Networks
-├── Utility Nodes
-├── Poles
-├── Transformers
-├── Valves
-└── Manholes
-                        │
-                        ▼
-                  CRS STANDARDIZATION
-                        │
-                        ▼
-            BUILD STRtree SPATIAL INDEX
-                        │
-                        ▼
-               CANDIDATE FEATURE SEARCH
-                        │
-                        ▼
-
-              INITIAL ALIGNMENT / OVERLAY
-                        │
-                        ▼
-
-               ALIGNMENT QUALITY CHECK
-│
-├── Distance
-├── Node Correspondence
-├── Line-to-Line Comparison
-├── Hausdorff Distance
-└── Discrete Fréchet Distance
-                        │
-                  ┌─────┴─────┐
-                  │           │
-                GOOD         POOR
-                  │           │
-                  │           ▼
-                  │         RANSAC
-                  │           │
-                  │           ▼
-                  │          ICP
-                  │           │
-                  │           ▼
-                  │   TPS if local distortion
-                  │           │
-                  └─────┬─────┘
-                        ▼
-
-             HARMONIZED UTILITY GIS LAYER
-                        │
-                        ▼
-
-             UTILITY SPATIAL ANALYTICS
-│
-├── ST_Buffer → Right-of-Way / Safety Corridor
-├── ST_Intersects → Encroachment Detection
-├── ST_Intersection → Conflict Area
-├── ST_Distance → Clearance Analysis
-└── nDSM Analysis → Vertical Clearance
-                        │
-                        ▼
-
-                  UTILITY ↔ PARCEL LINK
-                        │
-                        ▼
+UTILITY GIS DATA
+        ↓
+CRS STANDARDIZATION
+        ↓
+BUILD STRtree SPATIAL INDEX
+        ↓
+CANDIDATE FEATURE SEARCH
+        ↓
+SELECTED CANDIDATE FEATURES
+        ↓
+CALCULATE GEOMETRIC MATCHING FEATURES
+        │
+        ├── Distance
+        ├── Node Correspondence
+        ├── Line-to-Line Comparison
+        ├── Hausdorff Distance
+        └── Discrete Fréchet Distance
+        │
+        ↓
+GEOMETRIC MATCHING EVIDENCE
+        ↓
+RANSAC
+        ↓
+REMOVE WRONG / OUTLIER CORRESPONDENCES
+        ↓
+ICP
+        ↓
+REFINE GEOMETRIC ALIGNMENT
+        ↓
+TPS IF LOCAL DISTORTION EXISTS
+        ↓
+HARMONIZED UTILITY GIS LAYER
+        ↓
+UTILITY SPATIAL ANALYTICS
+        │
+        ├── ST_Buffer → Right-of-Way / Safety Corridor
+        ├── ST_Intersects → Encroachment Detection
+        ├── ST_Intersection → Conflict Area
+        ├── ST_Distance → Clearance Analysis
+        └── nDSM → Vertical Clearance
+        ↓
+UTILITY ↔ PARCEL LINK
+        ↓
 ╔══════════════════════════════════════════════════════════════════════════════╗
 ║ PHASE 13 — REVENUE RECORD & INTELLIGENT ATTRIBUTE INTEGRATION               ║
 ╚══════════════════════════════════════════════════════════════════════════════╝
