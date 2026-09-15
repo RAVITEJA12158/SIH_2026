@@ -1,0 +1,32 @@
+{
+  "n_extracted_features": 22,
+  "n_cadastral_records": 21,
+  "extraction_method_breakdown": {
+    "segformer": 18,
+    "specialized": 4
+  },
+  "segformer_only_iou": 0.925,
+  "adaptive_pipeline_iou": 0.933,
+  "confidence_model_metrics": {
+    "n_train": 273,
+    "n_test": 126,
+    "auc": 1.0,
+    "precision": 0.977,
+    "recall": 1.0,
+    "f1": 0.989
+  },
+  "decision_counts": {
+    "auto_validate": 21,
+    "manual_review": 1
+  },
+  "confidence_tier_counts": {
+    "high": 21,
+    "low": 1
+  },
+  "conflicts": {
+    "no_record_match": [],
+    "no_imagery_match": [],
+    "competing_claims_gov_idx": []
+  },
+  "runtime_seconds": 124.9
+}
